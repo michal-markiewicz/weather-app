@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--
+        1. Be able to see the weekly weather forecast for a city
+        2. Be able to see the date
+        3. Be able to see weather conditions
+        4. Be able to search for a city
+        5. Be able to see wind speed and direction
+    -->
+    <div class="wrapper">
+    <div class="current-weather-container">
+        <div>
+            <img src="img/sunny.png" height="150px" width="150px" alt="">
+        </div>
+
+        <div>
+            <h2 id="current-date" class="mt-1">Today is 19.04.2022, Tuesday</h2>
+            <h2 id="current-weather" class="mt-1">Current weather: 12 celsius, rainy</h2>
+        </div>
+    </div>
+
+    <table id="weekly-weather-table">
+        <tr>
+            <th>Date</th>
+            <th>Temperature</th>
+            <th>Conditions</th>
+            <th class="mobile-hidden">Wind speed</th>
+            <th class="mobile-hidden">Wind direction</th>
+        </tr>
+        <tr>
+            <td>19.04.2022</td>
+            <td>12 celsius</td>
+            <td>rainy</td>
+            <td class="mobile-hidden">16 km/h</td>
+            <td class="mobile-hidden">-></td>
+        </tr>
+        <tr>
+            <td>20.04.2022</td>
+            <td>9 celsius</td>
+            <td>sunny</td>
+            <td class="mobile-hidden">24 km/h</td>
+            <td class="mobile-hidden"><-</td>
+        </tr>
+    </table>
+
+    <div class="mt-1">
+        <input type="text" placeholder="Enter city">
+        <button id="process-button">Process</button>
+    </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
