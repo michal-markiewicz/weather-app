@@ -4,50 +4,41 @@
 // 4. Be able to search for a city
 // 5. Be able to see wind speed and direction
 
-// Poczytaj więcej o CORS jak będziesz miał czas
+let apiKey = '73012e2db6d0b8ec6dc89e30e85f0ec6';
 
-const city = {
-    name: "",
-    latitude: 0,
-    longitude: 0,
-    currentTemperature: 0,
-    currentConditions: "",
-    windSpeed: 0,
-    windDirection: 0
-}
-
-getCityData('Kraków');
-
-function getCityData (city)
+function geocoding (cityName)
 {
-    getLatitudeLongitude(city);
-    getWeather();
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}&limit=1`)
+    .then((response) => {
+        response.json()
+        .then((responseBody) => {
+            const lat = responseBody[0].lat;
+            const lon = responseBody[0].lon;
+
+            getWeather(lat, lon);
+        })
+    })
 }
 
-function getLatitudeLongitude (city)
+geocoding("Warsaw");
+
+function getWeather (lat, lon)
 {
-    let apiKey = '73012e2db6d0b8ec6dc89e30e85f0ec6';
-    let xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState === 4 && xhr.status === 200)
-        {
-            const response = JSON.parse(xhr.responseText);
-            city.name = city;
-            city.latitude = response[0].lat;
-            city.longitude = response[0].lon;
-
-            console.log(city.latitude, city.longitude);
-        }
-    }
-
-    xhr.open('GET', `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`, false);
-    xhr.send();
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&units=metric&appid=${apiKey}`)
+    .then((response) => {
+        response.json()
+        .then((responseBody) => {
+            printWeather(responseBody);
+        })
+    })
 }
 
-function getWeather (lat, lng)
+function printWeather (data)
 {
-    console.log(city.windSpeed, city.windDirection);
+    const currentDateHtml = document.getElementById('current-date');
 }
+
+
+
 
 
